@@ -499,7 +499,7 @@ var LOOP = (function(){
     ctx.stroke();
     ctx.font = font; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     for (var n = 1; n*inch < len - 4; n++){
-      if (phone && n >= 10 && n % 2) continue;   // small blade: even inches only past 9, so numbers don't run together
+      if (phone && n >= 9 && n % 2) continue;    // small blade: even inches only from 8 on, so numbers don't run together
       p = at(len, n*inch);
       ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(Math.atan2(p.ty, p.tx));
       if (n % 16 === 0){ ctx.fillStyle = '#d6332a'; ctx.fillRect(-blade*(phone ? 0.24 : 0.36), -blade*0.2, blade*(phone ? 0.48 : 0.72), blade*0.4); ctx.fillStyle = '#fff'; }
