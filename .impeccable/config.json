@@ -17,6 +17,48 @@
         ],
         "createdAt": "2026-10-19T03:43:44.980Z",
         "reason": "domain material: the repeating gradient draws inch tick marks on the tape-segment step numbers (.inch), the site's tape-measure world"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#5d6c82",
+        "createdAt": "2026-10-19T03:58:54.306Z",
+        "reason": "Claude: placeholder grey raised to 5.3:1 contrast at finish review; one-off, documenter left it uncanonized"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": ".86rem",
+        "createdAt": "2026-10-19T03:58:54.377Z",
+        "reason": "Claude: shipped component sizes (wordmark min, LLC line, closing headline endpoints, closing line, 360px chip label) off the documented ramp by design"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": ".75rem",
+        "createdAt": "2026-10-19T03:58:54.448Z",
+        "reason": "Claude: shipped component sizes (wordmark min, LLC line, closing headline endpoints, closing line, 360px chip label) off the documented ramp by design"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "2.4rem",
+        "createdAt": "2026-10-19T03:58:54.521Z",
+        "reason": "Claude: shipped component sizes (wordmark min, LLC line, closing headline endpoints, closing line, 360px chip label) off the documented ramp by design"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "4.6rem",
+        "createdAt": "2026-10-19T03:58:54.598Z",
+        "reason": "Claude: shipped component sizes (wordmark min, LLC line, closing headline endpoints, closing line, 360px chip label) off the documented ramp by design"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "1.1rem",
+        "createdAt": "2026-10-19T03:58:54.673Z",
+        "reason": "Claude: shipped component sizes (wordmark min, LLC line, closing headline endpoints, closing line, 360px chip label) off the documented ramp by design"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": ".95rem",
+        "createdAt": "2026-10-19T03:58:54.747Z",
+        "reason": "Claude: shipped component sizes (wordmark min, LLC line, closing headline endpoints, closing line, 360px chip label) off the documented ramp by design"
       }
     ]
   }
