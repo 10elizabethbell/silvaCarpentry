@@ -405,7 +405,7 @@ var LOOP = (function(){
   function autoTarget(){
     var minL = W * (phone ? 0.42 : 0.35), maxL = W - mouth.x - (phone ? 18 : 60);
     var k = 0.5 + 0.32*Math.sin(t*TUNE.AUTO_SPEED) + 0.18*Math.sin(t*TUNE.AUTO_SPEED*2.3 + 1.3);
-    var rise = phone ? 0 : H * 0.6 * k * k;   // on desktop the blade stands out and curves up into the open space
+    var rise = phone ? 0 : H * 0.62 * k;   // on desktop the blade stands out and curves up into the open space
     return { x: mouth.x + minL + (maxL - minL) * k,
              y: mouth.y - rise + 7*Math.sin(t*0.8) + 4*Math.sin(t*1.9 + 1) };
   }
@@ -499,6 +499,7 @@ var LOOP = (function(){
     ctx.stroke();
     ctx.font = font; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     for (var n = 1; n*inch < len - 4; n++){
+      if (phone && n >= 10 && n % 2) continue;   // small blade: even inches only past 9, so numbers don't run together
       p = at(len, n*inch);
       ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(Math.atan2(p.ty, p.tx));
       if (n % 16 === 0){ ctx.fillStyle = '#d6332a'; ctx.fillRect(-blade*(phone ? 0.24 : 0.36), -blade*0.2, blade*(phone ? 0.48 : 0.72), blade*0.4); ctx.fillStyle = '#fff'; }
@@ -572,7 +573,21 @@ var LOOP = (function(){
 
   // input: finger drags the hook anywhere in the band; a mouse steers it while hovering the hero
   var hero = cv.closest('.hero');
-  function measureCopy(){ copyBox = copy ? copy.getBoundingClientRect() : null; }
+  // the actual text and buttons, not the full-width wrapper they sit in
+  function measureCopy(){
+    if (!copy) return;
+    var box = null;
+    [].forEach.call(copy.children, function(el){
+      [].forEach.call(el.children.length && el.classList.contains('actions') ? el.children : [el], function(n){
+        var r = n.getBoundingClientRect();
+        var w = n.tagName === 'H1' || n.tagName === 'P' ? textRight(n) : r.right;
+        box = box ? { right: Math.max(box.right, w), bottom: Math.max(box.bottom, r.bottom) } : { right: w, bottom: r.bottom };
+      });
+    });
+    copyBox = box;
+  }
+  function textRight(el){ var rg = document.createRange(); rg.selectNodeContents(el); var rs = rg.getClientRects(), m = 0;
+    for (var i = 0; i < rs.length; i++) m = Math.max(m, rs[i].right); return m || el.getBoundingClientRect().right; }
   cv.addEventListener('pointerdown', function(e){
     ptr.active = true; ptr.held = true; ptr.id = e.pointerId; ptr.cx = e.clientX; ptr.cy = e.clientY; retractUntil = 0;
     try { cv.setPointerCapture(e.pointerId); } catch(_){}
@@ -614,10 +629,10 @@ var LOOP = (function(){
     var fill = document.createElementNS(NS, 'path'); fill.setAttribute('fill', tok(svg.dataset.bottom));
     // chalk: a broken core plus two scattered powder passes, so the edge reads as powder, not a vector stroke
     function pass(w, a, dash, off){ var e = document.createElementNS(NS, 'path'); e.setAttribute('fill', 'none');
-      e.setAttribute('stroke', 'rgba(79,143,230,' + a + ')'); e.setAttribute('stroke-width', w); e.setAttribute('stroke-linecap', 'round');
+      e.setAttribute('stroke', 'rgba(79,143,230,' + a + ')'); e.setAttribute('stroke-width', w); e.setAttribute('stroke-linecap', dash ? 'butt' : 'round');
       if (dash) { e.setAttribute('stroke-dasharray', dash); e.setAttribute('stroke-dashoffset', off); }
       e.setAttribute('vector-effect', 'non-scaling-stroke'); return e; }
-    var p1 = pass(9, .22, '0.4 5.5', 1), p2 = pass(5.5, .45, '0.8 3.2', 0), core = pass(2.4, .95, '14 1.5 6 1 22 2', 0);
+    var p1 = pass(9, .2, '0.3 4.1 1.4 2.3 0.6 6.8 2.2 3.1 0.4 5.6 1.1 1.9 0.9 7.4', 3), p2 = pass(5.5, .42, '1.6 2.2 0.4 3.9 2.8 1.3 0.7 4.6 1.9 2.7 0.3 3.3', 1.7), core = pass(2.4, .95, '14 1.5 6 1 22 2', 0);
     svg.appendChild(fill); svg.appendChild(p1); svg.appendChild(p2); svg.appendChild(core);
     lines.push({svg:svg, fill:fill, passes:[p1, p2, core], y:new Float32Array(TUNE.NODES), v:new Float32Array(TUNE.NODES),
       vis:false, next: 1 + Math.random()*4, prevRel:null, still:false});
