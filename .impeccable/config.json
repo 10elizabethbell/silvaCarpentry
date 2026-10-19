@@ -8,6 +8,15 @@
         "value": "roboto",
         "createdAt": "2026-10-19T03:37:02.408Z",
         "reason": "pitch-site house style (ellie-taste.md §2): system font stack; Roboto is only Android's system-ui fallback"
+      },
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-19T03:43:44.980Z",
+        "reason": "domain material: the repeating gradient draws inch tick marks on the tape-segment step numbers (.inch), the site's tape-measure world"
       }
     ]
   }

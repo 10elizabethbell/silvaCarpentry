@@ -43,7 +43,7 @@ body{margin:0;font-family:var(--font);font-size:17px;line-height:1.55;color:var(
 ::selection{background:var(--tape);color:var(--tape-ink)}
 a{color:inherit;text-underline-offset:3px}
 p{text-wrap:pretty}
-::placeholder{color:#6b7a90}
+::placeholder{color:#5d6c82}
 input,textarea{caret-color:var(--focus)}
 :focus-visible{outline:3px solid var(--focus);outline-offset:3px}
 .navy :focus-visible{outline-color:var(--tape)}
@@ -82,7 +82,9 @@ h2{font-size:clamp(2rem,9vw,3.4rem)}
 .tape-band canvas:active{cursor:grabbing}
 
 /* ---------- chalk-line divider ---------- */
-.chalk{display:block;width:100%;height:64px;margin:-1px 0;pointer-events:none}
+.chalk{display:block;width:100%;height:64px;margin:-1px 0;pointer-events:none;overflow:visible}
+.chalk .puff{transform-box:fill-box;transform-origin:center;animation:puff .85s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes puff{to{transform:translate(var(--dx),var(--dy)) scale(2.4);opacity:0}}
 
 /* ---------- services ---------- */
 .services{padding:34px 0 40px}
@@ -104,9 +106,12 @@ h2{font-size:clamp(2rem,9vw,3.4rem)}
 .step{display:grid;grid-template-columns:58px 1fr;gap:16px;align-items:start}
 .inch{position:relative;height:40px;background:var(--tape);border-radius:3px;color:var(--tape-ink);font-weight:900;font-size:1.3rem;
   display:grid;place-items:center;box-shadow:0 6px 14px rgba(5,14,30,.35)}
-.inch::before,.inch::after{content:"";position:absolute;left:0;right:0;height:9px;
-  background:repeating-linear-gradient(90deg,var(--tape-ink) 0 1.5px,transparent 1.5px 7.25px)}
-.inch::before{top:0}.inch::after{bottom:0}
+.inch::before,.inch::after{content:"";position:absolute;left:3px;right:0;height:12px;background-repeat:no-repeat;
+  background-image:repeating-linear-gradient(90deg,var(--tape-ink) 0 1.6px,transparent 1.6px 29px),
+    repeating-linear-gradient(90deg,var(--tape-ink) 0 1.3px,transparent 1.3px 14.5px),
+    repeating-linear-gradient(90deg,var(--tape-ink) 0 1px,transparent 1px 7.25px)}
+.inch::before{top:0;background-size:100% 12px,100% 8px,100% 5px;background-position:0 0,0 0,0 0}
+.inch::after{bottom:0;background-size:100% 12px,100% 8px,100% 5px;background-position:0 100%,0 100%,0 100%}
 .step h3{font-size:1.3rem;letter-spacing:0}
 .step p{margin:6px 0 0;color:var(--on-navy-soft);line-height:1.6}
 .where{margin:34px 0 0;padding-top:22px;border-top:1px solid rgba(195,209,232,.22);color:var(--on-navy-soft)}
@@ -154,6 +159,10 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--focus);b
 .foot a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center;font-variant-numeric:tabular-nums}
 
 /* ---------- desktop ---------- */
+@media (max-width:379px){
+  .chips{gap:8px}
+  .chip span{padding:0 10px;gap:7px;font-size:.95rem;white-space:nowrap}
+}
 @media (min-width:760px){
   .wrap{padding:0 40px}
   .mark b{font-size:1.2rem}
@@ -181,6 +190,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--focus);b
 }
 @media (min-width:1024px){
   .quote-grid{display:grid;grid-template-columns:5fr 7fr;gap:60px;align-items:start}
+  .quote-grid > div:first-child{position:sticky;top:40px}
   form{margin-top:6px}
   .chips{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 }
@@ -363,8 +373,8 @@ var LOOP = (function(){
     STIFF_AUTO: 26, STIFF_HELD: 70, DAMP: 10,    // tip spring (DAMP 10 ≈ critical for auto: no rubbery wobble)
     RETRACT_STIFF: 140, RETRACT_TIME: 0.9,       // let go: blade zips home, case kicks, then measuring resumes
     AUTO_SPEED: 0.32,                            // how fast it measures on its own
-    TWANG: 1.8,                                  // steel shiver when the blade stops fast
-    DUST_PHONE: 24, DUST_DESK: 60                // falling sawdust
+    TWANG: 1.8, SAG: 0.025, AIM_MAX: 0.55,      // blade sag, how far the case turns to aim                                  // steel shiver when the blade stops fast
+    DUST_PHONE: 0, DUST_DESK: 0                  // falling sawdust (off: read as stars at this size)
   };
   var cv = document.getElementById('tape'); if (!cv) return;
   var ctx = cv.getContext('2d');
@@ -373,7 +383,7 @@ var LOOP = (function(){
   var blade, inch, mouth, caseS;
   var tip = {x:0, y:0, vx:0, vy:0};
   var ptr = {active:false, held:false, cx:0, cy:0, id:null};
-  var dust = [], t = 0, visible = true, retractUntil = 0, caseKick = 0, twang = 0;
+  var dust = [], t = 0, visible = true, retractUntil = 0, caseKick = 0, twang = 0, caseAng = 0;
 
   function size(){
     rect = cv.getBoundingClientRect();
@@ -382,9 +392,9 @@ var LOOP = (function(){
     W = nw; H = nh; phone = W < 760;
     dpr = Math.min(window.devicePixelRatio || 1, phone ? 2 : 1.5);
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-    blade = phone ? 40 : 50; inch = phone ? 27 : 36; caseS = phone ? 128 : 176;
-    mouth = { x: caseS * 0.62, y: H * (phone ? 0.6 : 0.8) };
-    font = '800 ' + Math.round(blade*0.38) + 'px ' + getComputedStyle(document.body).fontFamily;
+    blade = phone ? 40 : 50; inch = phone ? 15 : 36; caseS = phone ? 128 : 176;
+    mouth = { x: caseS * 0.62, y: H * (phone ? 0.66 : 0.8) };
+    font = '800 ' + Math.round(blade*(phone ? 0.28 : 0.38)) + 'px ' + getComputedStyle(document.body).fontFamily;
     if (!tip.x) { tip.x = mouth.x + W * 0.55; tip.y = mouth.y; }
     var n = phone ? TUNE.DUST_PHONE : TUNE.DUST_DESK; dust = [];
     for (var i = 0; i < n; i++) dust.push({x:Math.random()*W, y:Math.random()*H, ox:0, oy:0, vx:0, vy:0,
@@ -393,7 +403,7 @@ var LOOP = (function(){
   }
 
   function autoTarget(){
-    var minL = W * (phone ? 0.42 : 0.35), maxL = W - mouth.x - (phone ? 24 : 60);
+    var minL = W * (phone ? 0.42 : 0.35), maxL = W - mouth.x - (phone ? 18 : 60);
     var k = 0.5 + 0.32*Math.sin(t*TUNE.AUTO_SPEED) + 0.18*Math.sin(t*TUNE.AUTO_SPEED*2.3 + 1.3);
     var rise = phone ? 0 : H * 0.6 * k * k;   // on desktop the blade stands out and curves up into the open space
     return { x: mouth.x + minL + (maxL - minL) * k,
@@ -410,7 +420,9 @@ var LOOP = (function(){
   // quadratic bezier mouth -> tip, sampled with cumulative length
   var S = [];
   function sampleBlade(){
-    var c = { x: mouth.x + Math.max(0, tip.x - mouth.x) * 0.5, y: mouth.y + (tip.y - mouth.y) * 0.35 };
+    // steel can't bend sideways in its own plane: the blade runs straight from the mouth and only sags a little
+    var dist = Math.hypot(tip.x - mouth.x, tip.y - mouth.y);
+    var c = { x: (mouth.x + tip.x) / 2, y: (mouth.y + tip.y) / 2 + Math.min(14, dist * TUNE.SAG) };
     var N = 72, len = 0, px = mouth.x, py = mouth.y;
     S.length = 0;
     for (var i = 0; i <= N; i++){
@@ -440,11 +452,10 @@ var LOOP = (function(){
   function drawCase(){
     var s = caseS, x = mouth.x - s*0.86, y = mouth.y - s*0.82;
     ctx.save();
-    ctx.translate(mouth.x, mouth.y); ctx.rotate(-caseKick * 0.05); ctx.translate(-mouth.x - caseKick * 6, -mouth.y);
+    ctx.translate(mouth.x, mouth.y); ctx.rotate(caseAng - caseKick * 0.05); ctx.translate(-mouth.x - caseKick * 6, -mouth.y);
     // soft shadow without blur: two offset fills
-    ctx.fillStyle = 'rgba(4,12,28,.22)'; rr(x + 2, y + 12, s, s, s*0.2); ctx.fill();
-    ctx.fillStyle = 'rgba(4,12,28,.18)'; rr(x + 1, y + 6, s, s, s*0.2); ctx.fill();
-    ctx.fillStyle = '#f5c400'; rr(x, y, s, s, s*0.2); ctx.fill();
+    ctx.save(); ctx.shadowColor = 'rgba(4,12,28,.5)'; ctx.shadowBlur = 18; ctx.shadowOffsetY = 9;
+    ctx.fillStyle = '#f5c400'; rr(x, y, s, s, s*0.2); ctx.fill(); ctx.restore();
     var g = ctx.createLinearGradient(x, y, x + s, y + s);
     g.addColorStop(0, 'rgba(120,80,0,0)'); g.addColorStop(1, 'rgba(120,80,0,.22)');
     ctx.fillStyle = g; rr(x, y, s, s, s*0.2); ctx.fill();
@@ -467,9 +478,8 @@ var LOOP = (function(){
   }
   function drawBlade(len){
     var hw = blade/2, i, p;
-    ctx.fillStyle = 'rgba(4,12,28,.2)'; outline(11); ctx.fill();   // shadow, no blur
-    ctx.fillStyle = 'rgba(4,12,28,.2)'; outline(6); ctx.fill();
-    ctx.fillStyle = '#f5c400'; outline(0); ctx.fill();
+    ctx.save(); ctx.shadowColor = 'rgba(4,12,28,.42)'; ctx.shadowBlur = 12; ctx.shadowOffsetY = 8;
+    ctx.fillStyle = '#f5c400'; outline(0); ctx.fill(); ctx.restore();
     // cupped blade: darker toward both edges
     ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'butt';
     ctx.strokeStyle = 'rgba(150,100,0,.20)'; ctx.lineWidth = blade; strokeMid();
@@ -491,7 +501,7 @@ var LOOP = (function(){
     for (var n = 1; n*inch < len - 4; n++){
       p = at(len, n*inch);
       ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(Math.atan2(p.ty, p.tx));
-      if (n % 16 === 0){ ctx.fillStyle = '#d6332a'; ctx.fillRect(-blade*0.36, -blade*0.24, blade*0.72, blade*0.48); ctx.fillStyle = '#fff'; }
+      if (n % 16 === 0){ ctx.fillStyle = '#d6332a'; ctx.fillRect(-blade*(phone ? 0.24 : 0.36), -blade*0.2, blade*(phone ? 0.48 : 0.72), blade*0.4); ctx.fillStyle = '#fff'; }
       else ctx.fillStyle = '#1d2430';
       ctx.fillText(String(n), 0, 1);
       ctx.restore();
@@ -532,6 +542,8 @@ var LOOP = (function(){
     var newSpeed = Math.hypot(tip.vx, tip.vy);
     twang = Math.max(twang * Math.pow(0.02, dt), Math.min(1, Math.max(0, speed - newSpeed) / (900 * dt + 1) * 0.6));
     caseKick *= Math.pow(0.002, dt);
+    var aim = Math.max(-TUNE.AIM_MAX, Math.min(TUNE.AIM_MAX, Math.atan2(tip.y - mouth.y, Math.max(20, tip.x - mouth.x))));
+    caseAng += (aim - caseAng) * Math.min(1, dt * 10);
     for (var i = 0; i < dust.length; i++){
       var d = dust[i];
       d.y += d.sp * dt * 7; d.x += Math.sin(t*0.6 + d.ph) * dt * 5;
@@ -600,13 +612,14 @@ var LOOP = (function(){
     svg.setAttribute('preserveAspectRatio', 'none');
     svg.style.background = tok(svg.dataset.top);
     var fill = document.createElementNS(NS, 'path'); fill.setAttribute('fill', tok(svg.dataset.bottom));
-    var dust = document.createElementNS(NS, 'path'); dust.setAttribute('fill', 'none');   // powder left along the line
-    dust.setAttribute('stroke', 'rgba(79,143,230,.35)'); dust.setAttribute('stroke-width', '5'); dust.setAttribute('stroke-linecap', 'round');
-    dust.setAttribute('stroke-dasharray', '0.5 4'); dust.setAttribute('vector-effect', 'non-scaling-stroke');
-    var line = document.createElementNS(NS, 'path'); line.setAttribute('fill', 'none');
-    line.setAttribute('stroke', tok('--chalk')); line.setAttribute('stroke-width', '2'); line.setAttribute('vector-effect', 'non-scaling-stroke');
-    svg.appendChild(fill); svg.appendChild(dust); svg.appendChild(line);
-    lines.push({svg:svg, fill:fill, dust:dust, line:line, y:new Float32Array(TUNE.NODES), v:new Float32Array(TUNE.NODES),
+    // chalk: a broken core plus two scattered powder passes, so the edge reads as powder, not a vector stroke
+    function pass(w, a, dash, off){ var e = document.createElementNS(NS, 'path'); e.setAttribute('fill', 'none');
+      e.setAttribute('stroke', 'rgba(79,143,230,' + a + ')'); e.setAttribute('stroke-width', w); e.setAttribute('stroke-linecap', 'round');
+      if (dash) { e.setAttribute('stroke-dasharray', dash); e.setAttribute('stroke-dashoffset', off); }
+      e.setAttribute('vector-effect', 'non-scaling-stroke'); return e; }
+    var p1 = pass(9, .22, '0.4 5.5', 1), p2 = pass(5.5, .45, '0.8 3.2', 0), core = pass(2.4, .95, '14 1.5 6 1 22 2', 0);
+    svg.appendChild(fill); svg.appendChild(p1); svg.appendChild(p2); svg.appendChild(core);
+    lines.push({svg:svg, fill:fill, passes:[p1, p2, core], y:new Float32Array(TUNE.NODES), v:new Float32Array(TUNE.NODES),
       vis:false, next: 1 + Math.random()*4, prevRel:null, still:false});
   });
   if (!lines.length) return;
@@ -624,7 +637,18 @@ var LOOP = (function(){
     }
     return d + ' L' + VB + ' ' + MID;
   }
-  function render(L){ var d = path(L); L.line.setAttribute('d', d); L.dust.setAttribute('d', d); L.fill.setAttribute('d', d + ' L' + VB + ' ' + VH + ' L0 ' + VH + ' Z'); }
+  function render(L){ var d = path(L); L.passes.forEach(function(e){ e.setAttribute('d', d); }); L.fill.setAttribute('d', d + ' L' + VB + ' ' + VH + ' L0 ' + VH + ' Z'); }
+  // a little cloud of chalk where a finger or mouse plucks the line
+  function puff(L, xFrac, dir){
+    var g = document.createElementNS(NS, 'g'), cx = xFrac * VB;
+    for (var i = 0; i < 7; i++){ var c = document.createElementNS(NS, 'ellipse');
+      c.setAttribute('cx', (cx + (Math.random() - .5) * 40).toFixed(1)); c.setAttribute('cy', (MID + (Math.random() - .5) * 8).toFixed(1));
+      c.setAttribute('rx', (2 + Math.random() * 5).toFixed(1)); c.setAttribute('ry', (1.5 + Math.random() * 3).toFixed(1));
+      c.setAttribute('fill', 'rgba(120,170,240,' + (.25 + Math.random() * .3).toFixed(2) + ')');
+      c.style.setProperty('--dx', ((Math.random() - .5) * 30).toFixed(1) + 'px'); c.style.setProperty('--dy', (-dir * (6 + Math.random() * 14)).toFixed(1) + 'px');
+      c.setAttribute('class', 'puff'); g.appendChild(c); }
+    L.svg.appendChild(g); setTimeout(function(){ g.remove(); }, 900);
+  }
   lines.forEach(render);
   if (REDUCED) return;
 
@@ -648,6 +672,7 @@ var LOOP = (function(){
         if (L.prevRel !== null && (L.prevRel < 0) !== (rel < 0) && ptr.x >= r.left && ptr.x <= r.right){
           var sp = Math.min(1, Math.abs(rel - L.prevRel) / 30);
           pluck(L, (ptr.x - r.left)/r.width, (rel > 0 ? 1 : -1) * TUNE.PLUCK * (8 + 22*sp));
+          if (sp > 0.15) puff(L, (ptr.x - r.left)/r.width, rel > 0 ? -1 : 1);
         }
         L.prevRel = rel;
       }
