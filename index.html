@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Silva Carpentry LLC · Finish Carpentry &amp; Interior Trim</title>
+<meta name="description" content="Silva Carpentry LLC: finish trim, doors, baseboards, crown, casings, handrails and cabinets. Text a photo of your room for a quote: 484-821-7333.">
+<meta name="theme-color" content="#142a4c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Silva Carpentry LLC">
+<meta property="og:description" content="Finish trim, doors, baseboards, crown, casings, handrails and cabinets. Text a photo of your room for a quote.">
+<meta property="og:url" content="https://10elizabethbell.github.io/silvaCarpentry/">
+<meta property="og:image" content="https://10elizabethbell.github.io/silvaCarpentry/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23142a4c'/%3E%3Crect x='6' y='42' width='52' height='12' rx='2' fill='%23f5c400'/%3E%3Cpath d='M14 42v-5M22 42v-3M30 42v-5M38 42v-3M46 42v-5' stroke='%23142a4c' stroke-width='2'/%3E%3Ctext x='32' y='35' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='900' font-size='34' fill='%23f5f7fa'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --chalk-navy:#142a4c;      /* page ground: deep chalk-line blue */
+  --chalk-deep:#0f2140;      /* footer */
+  --primed:#f3f5f2;          /* paint-grade primed trim white */
+  --ink:#13294b;             /* text on primed */
+  --ink-soft:#43597a;
+  --tape:#f5c400;            /* tape blade yellow */
+  --tape-ink:#1d2430;
+  --stud:#d6332a;            /* 16-inch stud marks, tape only */
+  --chalk:#4f8fe6;           /* chalk line */
+  --focus:#2f6fd6;           /* form outlines, focus */
+  --on-navy:#f5f7fa;
+  --on-navy-soft:#c3d1e8;
+  --rule:#c9d2de;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overscroll-behavior-y:none;background:var(--chalk-navy)}
+body{margin:0;font-family:var(--font);font-size:17px;line-height:1.55;color:var(--ink);background:var(--primed)}
+::selection{background:var(--tape);color:var(--tape-ink)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+img,svg,canvas{display:block}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:.98;margin:0;text-wrap:balance}
+h2{font-size:clamp(2rem,9vw,3.4rem)}
+.navy{background:var(--chalk-navy);color:var(--on-navy)}
+
+/* ---------- buttons ---------- */
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 26px;border-radius:10px;
+  border:2px solid var(--tape);font:inherit;font-weight:800;font-size:1.06rem;text-decoration:none;cursor:pointer;
+  transition:background-color .18s ease,color .18s ease,transform .12s ease}
+.btn:active{transform:translateY(1px)}
+.btn-fill{background:var(--tape);color:var(--tape-ink)}
+.btn-fill:hover{background:#ffd31f}
+.btn-line{background:transparent;color:var(--on-navy)}
+.btn-line:hover{background:rgba(245,196,0,.12)}
+.btn svg{width:22px;height:22px;flex:none}
+
+/* ---------- header ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:max(14px,env(safe-area-inset-top));padding-bottom:14px}
+.mark{display:flex;flex-direction:column;justify-content:center;min-height:44px;text-decoration:none;line-height:1}
+.mark b{font-weight:900;font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase}
+.mark span{font-size:.68rem;font-weight:700;letter-spacing:.32em;color:var(--tape);margin-top:5px}
+.tel{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 2px;font-weight:800;font-size:1rem;text-decoration:none;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.tel svg{width:18px;height:18px;color:var(--tape)}
+.tel:hover{color:var(--tape)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden}
+.hero-copy{position:relative;z-index:1;padding-top:18px;padding-bottom:6px}
+.hero h1{font-size:clamp(2.9rem,15vw,6rem);max-width:9ch}
+.promise{margin:18px 0 0;font-size:clamp(1rem,4.4vw,1.25rem);line-height:1.5;color:var(--on-navy-soft);max-width:34ch}
+.actions{display:grid;gap:12px;margin-top:26px}
+.tape-band{position:relative;height:clamp(150px,27svh,230px);margin-top:4px}
+.tape-band canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;-webkit-user-select:none;user-select:none;cursor:grab}
+.tape-band canvas:active{cursor:grabbing}
+
+/* ---------- chalk-line divider ---------- */
+.chalk{display:block;width:100%;height:64px;margin:-1px 0;pointer-events:none}
+
+/* ---------- services ---------- */
+.services{padding:34px 0 40px}
+.svc-list{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--rule)}
+.svc-list li{border-bottom:1px solid var(--rule)}
+.row{display:flex;align-items:center;gap:16px;min-height:72px;padding:10px 2px;text-decoration:none;color:var(--ink)}
+.row:hover,.row:focus-visible{outline:none;background:none;box-shadow:none}
+.row svg.prof{width:44px;height:44px;flex:none;color:var(--ink)}
+.row .name{flex:1;font-weight:850;font-size:1.18rem;text-transform:uppercase;letter-spacing:.01em}
+.arrow{display:grid;place-items:center;width:44px;height:44px;flex:none;border-radius:50%;border:2px solid var(--rule);transition:background-color .18s ease,border-color .18s ease}
+.arrow svg{width:18px;height:18px}
+.row:hover .arrow,.row:focus-visible .arrow{background:var(--tape);border-color:var(--tape)}
+.row:focus-visible .arrow{outline:3px solid var(--focus);outline-offset:3px}
+.svc-note{margin:18px 0 0;color:var(--ink-soft);font-size:1rem}
+
+/* ---------- how it starts ---------- */
+.steps-sec{padding:30px 0 44px}
+.steps{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:26px}
+.step{display:grid;grid-template-columns:58px 1fr;gap:16px;align-items:start}
+.inch{position:relative;height:40px;background:var(--tape);border-radius:3px;color:var(--tape-ink);font-weight:900;font-size:1.3rem;
+  display:grid;place-items:center;box-shadow:0 6px 14px rgba(5,14,30,.35)}
+.inch::before,.inch::after{content:"";position:absolute;left:0;right:0;height:9px;
+  background:repeating-linear-gradient(90deg,var(--tape-ink) 0 1.5px,transparent 1.5px 7.25px)}
+.inch::before{top:0}.inch::after{bottom:0}
+.step h3{font-size:1.3rem;letter-spacing:0}
+.step p{margin:6px 0 0;color:var(--on-navy-soft)}
+.where{margin:34px 0 0;padding-top:22px;border-top:1px solid rgba(195,209,232,.22);color:var(--on-navy-soft)}
+.where strong{color:var(--on-navy)}
+
+/* ---------- quote form ---------- */
+.quote{padding:34px 0 48px}
+.quote-lede{margin:12px 0 0;color:var(--ink-soft);max-width:44ch}
+form{margin-top:24px;display:grid;gap:22px}
+.field label,.field legend{display:block;font-weight:800;font-size:1rem;margin-bottom:8px;padding:0}
+.opt{font-weight:500;color:var(--ink-soft)}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+input[type=text],input[type=tel],textarea,select{width:100%;font:inherit;font-size:17px;color:var(--ink);background:#fff;
+  border:2px solid var(--rule);border-radius:10px;padding:13px 14px;min-height:54px;transition:border-color .15s ease,box-shadow .15s ease}
+textarea{min-height:120px;resize:vertical}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2313294b' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:44px}
+input:hover,textarea:hover,select:hover{border-color:var(--focus)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--focus);box-shadow:0 0 0 3px rgba(47,111,214,.25)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.chip span{display:flex;align-items:center;gap:8px;min-height:46px;padding:0 16px;border:2px solid var(--rule);border-radius:10px;background:#fff;
+  font-weight:700;cursor:pointer;transition:border-color .15s ease,background-color .15s ease}
+.chip span::before{content:"";width:16px;height:16px;border:2px solid var(--ink-soft);border-radius:4px;flex:none;transition:background-color .15s ease,border-color .15s ease}
+.chip:hover span{border-color:var(--focus)}
+.chip input:focus-visible+span{border-color:var(--focus);box-shadow:0 0 0 3px rgba(47,111,214,.25)}
+.chip input:checked+span{background:#fff6cc;border-color:var(--tape)}
+.chip input:checked+span::before{background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/12px no-repeat;border-color:var(--ink)}
+.err{display:none;margin:8px 0 0;color:#b3261e;font-weight:700;font-size:.98rem}
+.field.bad .err{display:block}
+.field.bad input,.field.bad textarea{border-color:#b3261e}
+.send .btn{width:100%;border-color:var(--tape)}
+.send .btn:hover{outline:3px solid var(--focus);outline-offset:2px}
+.send .btn:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.send p{margin:10px 0 0;color:var(--ink-soft);font-size:.98rem}
+.send a{display:inline-block;padding:12px 0;margin:-12px 0;font-weight:800;color:var(--ink);text-underline-offset:3px;white-space:nowrap}
+
+/* ---------- close + footer ---------- */
+.close{padding:38px 0 0}
+.close h2{font-size:clamp(2.4rem,12vw,4.6rem);max-width:10ch}
+.close p{margin:14px 0 0;color:var(--on-navy-soft);font-size:1.1rem;max-width:36ch}
+.close .btn{margin-top:26px}
+.foot{margin-top:44px;padding:26px 0 calc(30px + env(safe-area-inset-bottom));border-top:1px solid rgba(195,209,232,.22);
+  display:grid;gap:6px;font-size:1rem;color:var(--on-navy-soft)}
+.foot b{color:var(--on-navy);text-transform:uppercase;letter-spacing:.06em;font-weight:900}
+.foot a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center;font-variant-numeric:tabular-nums}
+.foot a:hover{color:var(--tape)}
+
+/* ---------- desktop ---------- */
+@media (min-width:760px){
+  .wrap{padding:0 40px}
+  .mark b{font-size:1.2rem}
+  .tel{font-size:1.15rem}
+  .hero-copy{padding-top:56px}
+  .actions{grid-template-columns:auto auto;justify-content:start}
+  .tape-band{height:440px;margin-top:-200px}
+  .hero-copy{pointer-events:none}
+  .hero-copy a{pointer-events:auto}
+  .chalk{height:80px}
+  .services{padding:56px 0 64px}
+  .svc-grid{display:grid;grid-template-columns:5fr 7fr;gap:60px;align-items:start}
+  .svc-list{margin-top:6px;display:grid;grid-template-columns:1fr 1fr;column-gap:36px}
+  .steps-sec{padding:48px 0 64px}
+  .steps{grid-template-columns:repeat(3,1fr);gap:40px}
+  .step{grid-template-columns:1fr;gap:18px}
+  .inch{width:96px}
+  .quote{padding:56px 0 72px}
+  .close{padding:60px 0 0}
+  .close .btn{display:inline-flex}
+  .foot{grid-template-columns:auto auto 1fr;gap:28px;align-items:center}
+}
+@media (min-width:1024px){
+  .quote-grid{display:grid;grid-template-columns:5fr 7fr;gap:60px;align-items:start}
+  form{margin-top:6px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<!--
+THESIS: A finish carpenter lives by the tape: the page is measured out on a tape blade you can pull, and snapped into sections with chalk lines you can pluck. Refuses the stock contractor template (hero photo, icon cards, stats band).
+OWN-WORLD: Deep chalk-line navy fields and paint-grade primed-white fields, flat and full-width; tape-blade yellow (#f5c400) for the one primary action and the blade; red only on 16-inch stud marks; heavy uppercase system sans; molding-profile line drawings as icons; numbered steps printed on tape segments.
+STORY: Visitor sees trim done right is this crew's whole job, understands the eight things they install, and texts a photo of the room (or fills the short quote note that becomes a text).
+FIRST VIEWPORT: Wordmark left, tap-to-call number top right; "Trim that fits tight." at ~15vw; one-line promise; Text us a photo (filled) + Ask for a quote (outlined); the live tape blade running out of its case along the bottom, following the finger.
+FORM: Tape measure and chalk line, #4 on my ordered list of 7; seed ed966f2b.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><circle cx="12" cy="10.5" r="2.2"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<header class="navy">
+  <div class="wrap top">
+    <a class="mark" href="#top" aria-label="Silva Carpentry LLC, back to top"><b>Silva Carpentry</b><span>LLC</span></a>
+    <a class="tel" href="tel:+14848217333"><svg aria-hidden="true"><use href="#i-tel"/></svg>484-821-7333</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero navy">
+  <div class="wrap hero-copy">
+    <h1>Trim that fits tight.</h1>
+    <p class="promise">We measure in your room, cut every piece to your walls, and set it like it's going in our own home.</p>
+    <div class="actions">
+      <a class="btn btn-fill sms" data-body="Hi Silva Carpentry! Here's a photo of the room I'd like trim work in:" href="sms:+14848217333?&amp;body=Hi%20Silva%20Carpentry!%20Here's%20a%20photo%20of%20the%20room%20I'd%20like%20trim%20work%20in%3A"><svg aria-hidden="true"><use href="#i-msg"/></svg>Text us a photo</a>
+      <a class="btn btn-line" href="#quote">Ask for a quote</a>
+    </div>
+  </div>
+  <div class="tape-band" aria-hidden="true"><canvas id="tape"></canvas></div>
+</section>
+
+<svg class="chalk" data-top="#142a4c" data-bottom="#f3f5f2" aria-hidden="true"></svg>
+
+<section class="services" id="services">
+  <div class="wrap svc-grid">
+    <div>
+      <h2>What we install</h2>
+      <p class="svc-note">Tap one to text us about it.</p>
+    </div>
+    <ul class="svc-list">
+      <li><a class="row" data-svc="finish trim" href="#"><svg class="prof" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M6 42V6h36"/><path d="M15 42V15h27"/><path d="M6 6l9 9"/><path d="M10.5 42V10.5H42" opacity=".45"/></svg><span class="name">Finish trim</span><span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+      <li><a class="row" data-svc="doors" href="#"><svg class="prof" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M11 44V4h26v40"/><path d="M6 44h36"/><rect x="16" y="9" width="16" height="13" rx="1"/><rect x="16" y="26" width="16" height="13" rx="1"/><circle cx="33.5" cy="24" r="1.6" fill="currentColor"/></svg><span class="name">Doors</span><span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+      <li><a class="row" data-svc="baseboards" href="#"><svg class="prof" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M8 4v40h34"/><path d="M8 44h12V24c0-3-2-4-2-6s2-3 2-5V9c0-2-1-3-3-3H8"/></svg><span class="name">Baseboards</span><span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+      <li><a class="row" data-svc="crown molding" href="#"><svg class="prof" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M44 6H6v38"/><path d="M6 32c4 0 5-3 8-6s4-2 6-4 2-5 5-8 7-2 10-8"/><path d="M6 32v-4M35 6h-4"/></svg><span class="name">Crown molding</span><span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+      <li><a class="row" data-svc="casings" href="#"><svg class="prof" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M8 44V8h32v36"/><path d="M15 44V15h18v29"/><path d="M8 8l7 7M40 8l-7 7"/></svg><span class="name">Casings</span><span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+      <li><a class="row" data-svc="handrails" href="#"><svg class="prof" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M4 30L44 10"/><path d="M4 36L44 16" opacity=".45"/><path d="M12 33v11M22 28v16M32 23v21M42 18v26"/><path d="M4 44h40"/></svg><span class="name">Handrails</span><span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+      <li><a class="row" data-svc="cabinets" href="#"><svg class="prof" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="8" width="36" height="34" rx="1.5"/><path d="M24 8v34M6 18h36"/><path d="M19 26v6M29 26v6" stroke-linecap="round"/></svg><span class="name">Cabinets</span><span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+      <li><a class="row" data-svc="interior trim" href="#"><svg class="prof" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M10 36V6h28v30"/><path d="M16 32V12h16v20M24 12v20M16 22h16"/><path d="M6 36h36v5H6z"/></svg><span class="name">Interior trim</span><span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>
+    </ul>
+  </div>
+</section>
+
+<svg class="chalk" data-top="#f3f5f2" data-bottom="#142a4c" aria-hidden="true"></svg>
+
+<section class="steps-sec navy">
+  <div class="wrap">
+    <h2>How we start</h2>
+    <ol class="steps">
+      <li class="step"><span class="inch">1</span><div><h3>Send a photo</h3><p>Show us the room and tell us what you have in mind. Rough sizes help.</p></div></li>
+      <li class="step"><span class="inch">2</span><div><h3>We talk it over</h3><p>We go through the work with you and set a time to see it and measure.</p></div></li>
+      <li class="step"><span class="inch">3</span><div><h3>We build it in</h3><p>Every joint fitted by hand, and your home treated with the same care as the trim.</p></div></li>
+    </ol>
+    <p class="where"><strong>Where we work:</strong> text us your town and we'll tell you if we cover it.</p>
+  </div>
+</section>
+
+<svg class="chalk" data-top="#142a4c" data-bottom="#f3f5f2" aria-hidden="true"></svg>
+
+<section class="quote" id="quote">
+  <div class="wrap quote-grid">
+    <div>
+      <h2>Tell us about the room</h2>
+      <p class="quote-lede">Fill in what you know. It turns into a text you can read over before you send it.</p>
+    </div>
+    <form id="qform" novalidate>
+      <div class="field">
+        <label for="q-name">Your name</label>
+        <input id="q-name" type="text" autocomplete="name" placeholder="First name is fine">
+      </div>
+      <fieldset class="field" id="f-work">
+        <legend>What do you need?</legend>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="work" value="Finish trim"><span>Finish trim</span></label>
+          <label class="chip"><input type="checkbox" name="work" value="Doors"><span>Doors</span></label>
+          <label class="chip"><input type="checkbox" name="work" value="Baseboards"><span>Baseboards</span></label>
+          <label class="chip"><input type="checkbox" name="work" value="Crown molding"><span>Crown</span></label>
+          <label class="chip"><input type="checkbox" name="work" value="Casings"><span>Casings</span></label>
+          <label class="chip"><input type="checkbox" name="work" value="Handrails"><span>Handrails</span></label>
+          <label class="chip"><input type="checkbox" name="work" value="Cabinets"><span>Cabinets</span></label>
+          <label class="chip"><input type="checkbox" name="work" value="Interior trim"><span>Interior trim</span></label>
+        </div>
+      </fieldset>
+      <div class="field" id="f-job">
+        <label for="q-job">About the job</label>
+        <textarea id="q-job" placeholder="Which rooms, rough sizes, paint-grade or stained, anything you've already bought"></textarea>
+        <p class="err" id="e-job">Pick what you need above or say a few words about the job.</p>
+      </div>
+      <div class="field">
+        <label for="q-town">Town <span class="opt">(optional)</span></label>
+        <input id="q-town" type="text" autocomplete="address-level2">
+      </div>
+      <div class="field">
+        <label for="q-when">When <span class="opt">(optional)</span></label>
+        <select id="q-when">
+          <option value="">Choose one</option>
+          <option>As soon as possible</option>
+          <option>In the next month or two</option>
+          <option>Just planning for now</option>
+        </select>
+      </div>
+      <div class="send">
+        <button class="btn btn-fill" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Text this to Silva Carpentry</button>
+        <p>Opens your messages with the note written out. Rather talk? Call <a href="tel:+14848217333">484-821-7333</a>.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<svg class="chalk" data-top="#f3f5f2" data-bottom="#142a4c" aria-hidden="true"></svg>
+
+<section class="close navy">
+  <div class="wrap">
+    <h2>Silva Carpentry LLC</h2>
+    <p>Finish carpentry and interior trim, fitted piece by piece.</p>
+    <a class="btn btn-fill sms" data-body="Hi Silva Carpentry! Here's a photo of the room I'd like trim work in:" href="sms:+14848217333?&amp;body=Hi%20Silva%20Carpentry!%20Here's%20a%20photo%20of%20the%20room%20I'd%20like%20trim%20work%20in%3A"><svg aria-hidden="true"><use href="#i-msg"/></svg>Text us a photo</a>
+    <footer class="foot">
+      <b>Silva Carpentry LLC</b>
+      <a href="tel:+14848217333">484-821-7333</a>
+      <a href="mailto:silvacarpentry09@gmail.com">silvacarpentry09@gmail.com</a>
+    </footer>
+  </div>
+</section>
+</main>
+
+<script>
+/* ---------- shared ---------- */
+var SMS_NUMBER = '+14848217333';
+function smsHref(body){ return 'sms:' + SMS_NUMBER + '?&body=' + encodeURIComponent(body); }
+var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- service rows: one pre-written text per service ---------- */
+(function(){
+  document.querySelectorAll('.row[data-svc]').forEach(function(a){
+    a.href = smsHref('Hi Silva Carpentry! I\'d like a quote on ' + a.dataset.svc + '.');
+  });
+})();
+
+/* ---------- hero: the tape measure ---------- */
+(function(){
+  var TUNE = {
+    STIFF_AUTO: 26, STIFF_HELD: 70, DAMP: 6.5,   // tip spring
+    AUTO_SPEED: 0.32,                            // how fast it measures on its own
+    FLUTTER: 2.6, FLUTTER_WAVE: 150, FLUTTER_SPEED: 3.1, // blade ripple
+    DUST_PHONE: 46, DUST_DESK: 110
+  };
+  var cv = document.getElementById('tape'); if (!cv) return;
+  var ctx = cv.getContext('2d');
+  var W = 0, H = 0, dpr = 1, phone = true;
+  var blade, inch, mouth, caseS;
+  var tip = {x:0, y:0, vx:0, vy:0};
+  var ptr = {active:false, held:false, cx:0, cy:0, id:null};
+  var dust = [], t = 0, last = 0, running = false, visible = true;
+
+  function size(){
+    var r = cv.getBoundingClientRect();
+    var nw = Math.round(r.width), nh = Math.round(r.height);
+    if (nw === W && nh === H) return false;
+    W = nw; H = nh; phone = W < 760;
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    blade = phone ? 34 : 50; inch = phone ? 25 : 36; caseS = phone ? 112 : 176;
+    mouth = { x: caseS * 0.62, y: H * (phone ? 0.62 : 0.8) };
+    if (!tip.x) { tip.x = mouth.x + W * 0.55; tip.y = mouth.y; }
+    var n = phone ? TUNE.DUST_PHONE : TUNE.DUST_DESK; dust = [];
+    for (var i = 0; i < n; i++) dust.push({x:Math.random()*W, y:Math.random()*H, ox:0, oy:0, vx:0, vy:0,
+      r:0.6+Math.random()*1.8, a:0.12+Math.random()*0.35, ph:Math.random()*6.28, sp:0.2+Math.random()*0.5});
+    return true;
+  }
+
+  function autoTarget(){
+    var minL = W * (phone ? 0.42 : 0.35), maxL = W - mouth.x - (phone ? 24 : 60);
+    var k = 0.5 + 0.32*Math.sin(t*TUNE.AUTO_SPEED) + 0.18*Math.sin(t*TUNE.AUTO_SPEED*2.3 + 1.3);
+    var rise = phone ? 0 : H * 0.6 * k * k;   // on desktop the blade stands out and curves up into the open space
+    return { x: mouth.x + minL + (maxL - minL) * k,
+             y: mouth.y - rise + 7*Math.sin(t*0.8) + 4*Math.sin(t*1.9 + 1) };
+  }
+
+  // quadratic bezier mouth -> tip, sampled with cumulative length
+  var S = [];
+  function sampleBlade(){
+    var dx = tip.x - mouth.x, dist = Math.max(40, Math.hypot(dx, tip.y - mouth.y));
+    var c = { x: mouth.x + dist*0.5, y: mouth.y };
+    var N = 72, len = 0, px = mouth.x, py = mouth.y;
+    S.length = 0;
+    for (var i = 0; i <= N; i++){
+      var u = i / N, a = (1-u)*(1-u), b = 2*(1-u)*u, d = u*u;
+      var x = a*mouth.x + b*c.x + d*tip.x, y = a*mouth.y + b*c.y + d*tip.y;
+      if (i) len += Math.hypot(x - px, y - py);
+      S.push({x:x, y:y, l:len}); px = x; py = y;
+    }
+    for (var j = 0; j <= N; j++){
+      var p0 = S[Math.max(0, j-1)], p1 = S[Math.min(N, j+1)];
+      var tx = p1.x - p0.x, ty = p1.y - p0.y, m = Math.hypot(tx, ty) || 1;
+      S[j].tx = tx/m; S[j].ty = ty/m;
+      var fromTip = len - S[j].l, s = S[j].l / len;
+      S[j].f = TUNE.FLUTTER * Math.pow(s, 1.4) * Math.sin(fromTip / TUNE.FLUTTER_WAVE * 6.283 + t*TUNE.FLUTTER_SPEED);
+    }
+    return len;
+  }
+  // point on blade at distance d measured from the hook (0 = tip)
+  function at(len, d){
+    var target = len - d, i = 1;
+    while (i < S.length - 1 && S[i].l < target) i++;
+    var a = S[i-1], b = S[i], span = (b.l - a.l) || 1, u = Math.min(1, Math.max(0, (target - a.l)/span));
+    return { x: a.x + (b.x-a.x)*u, y: a.y + (b.y-a.y)*u, tx: a.tx + (b.tx-a.tx)*u, ty: a.ty + (b.ty-a.ty)*u, f: a.f + (b.f-a.f)*u };
+  }
+
+  function drawCase(){
+    var s = caseS, x = mouth.x - s*0.86, y = mouth.y - s*0.82;
+    ctx.save();
+    ctx.shadowColor = 'rgba(4,12,28,.5)'; ctx.shadowBlur = 22; ctx.shadowOffsetY = 10;
+    ctx.fillStyle = '#f5c400'; rr(x, y, s, s, s*0.2); ctx.fill();
+    ctx.restore();
+    var g = ctx.createLinearGradient(x, y, x + s, y + s);
+    g.addColorStop(0, 'rgba(255,255,255,.16)'); g.addColorStop(1, 'rgba(120,80,0,.22)');
+    ctx.fillStyle = g; rr(x, y, s, s, s*0.2); ctx.fill();
+    ctx.fillStyle = '#26354b'; rr(x + s*0.1, y + s*0.1, s*0.8, s*0.62, s*0.16); ctx.fill();   // rubber overmold
+    ctx.fillStyle = '#f5c400'; ctx.beginPath(); ctx.arc(x + s*0.5, y + s*0.41, s*0.2, 0, 6.283); ctx.fill();
+    ctx.fillStyle = '#b9c1cc'; ctx.beginPath(); ctx.arc(x + s*0.5, y + s*0.41, s*0.07, 0, 6.283); ctx.fill();
+    ctx.strokeStyle = '#6b7685'; ctx.lineWidth = Math.max(1.5, s*0.014); ctx.beginPath();
+    ctx.moveTo(x + s*0.455, y + s*0.41); ctx.lineTo(x + s*0.545, y + s*0.41); ctx.stroke();
+    ctx.fillStyle = '#26354b'; rr(x + s*0.3, y - s*0.035, s*0.26, s*0.1, s*0.04); ctx.fill();   // lock
+    ctx.fillStyle = '#1b2638'; rr(mouth.x - s*0.05, mouth.y - blade*0.62, s*0.2, blade*1.24, 4); ctx.fill(); // mouth
+  }
+  function rr(x, y, w, h, r){ ctx.beginPath(); ctx.moveTo(x+r, y); ctx.arcTo(x+w, y, x+w, y+h, r); ctx.arcTo(x+w, y+h, x, y+h, r); ctx.arcTo(x, y+h, x, y, r); ctx.arcTo(x, y, x+w, y, r); ctx.closePath(); }
+
+  function drawBlade(len){
+    var hw = blade/2, i, p;
+    // body
+    ctx.save();
+    ctx.shadowColor = 'rgba(4,12,28,.45)'; ctx.shadowBlur = 16; ctx.shadowOffsetY = 9;
+    ctx.beginPath();
+    for (i = 0; i < S.length; i++){ p = S[i]; ctx.lineTo(p.x - p.ty*(hw+p.f), p.y + p.tx*(hw+p.f)); }
+    for (i = S.length-1; i >= 0; i--){ p = S[i]; ctx.lineTo(p.x + p.ty*(hw-p.f), p.y - p.tx*(hw-p.f)); }
+    ctx.closePath(); ctx.fillStyle = '#f5c400'; ctx.fill();
+    ctx.restore();
+    // cupped shading: darker toward both edges
+    ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'butt';
+    ctx.strokeStyle = 'rgba(150,100,0,.20)'; ctx.lineWidth = blade; strokeMid(0);
+    ctx.strokeStyle = 'rgba(245,196,0,1)'; ctx.lineWidth = blade*0.72; strokeMid(0);
+    ctx.strokeStyle = 'rgba(255,236,150,.35)'; ctx.lineWidth = blade*0.32; strokeMid(-blade*0.08);
+    ctx.restore();
+    // graduations, measured from the hook
+    ctx.strokeStyle = '#1d2430'; ctx.lineWidth = phone ? 1.1 : 1.3;
+    var q = inch/4, steps = Math.floor((len - 6) / q);
+    ctx.beginPath();
+    for (i = 1; i <= steps; i++){
+      p = at(len, i*q); var nx = -p.ty, ny = p.tx;
+      var m = (i % 4 === 0) ? 0.34 : (i % 2 === 0 ? 0.22 : 0.13);
+      var e1 = hw + p.f, e2 = hw - p.f;
+      ctx.moveTo(p.x + nx*e1, p.y + ny*e1); ctx.lineTo(p.x + nx*(e1 - blade*m), p.y + ny*(e1 - blade*m));
+      ctx.moveTo(p.x - nx*e2, p.y - ny*e2); ctx.lineTo(p.x - nx*(e2 - blade*m), p.y - ny*(e2 - blade*m));
+    }
+    ctx.stroke();
+    ctx.font = '800 ' + Math.round(blade*0.38) + 'px ' + getComputedStyle(document.body).fontFamily;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    for (var n = 1; n*inch < len - 4; n++){
+      p = at(len, n*inch);
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(Math.atan2(p.ty, p.tx));
+      if (n % 16 === 0){ ctx.fillStyle = '#d6332a'; ctx.fillRect(-blade*0.36, -blade*0.24, blade*0.72, blade*0.48); ctx.fillStyle = '#fff'; }
+      else ctx.fillStyle = '#1d2430';
+      ctx.fillText(String(n), 0, 1);
+      ctx.restore();
+    }
+    // hook
+    p = at(len, 0);
+    ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(Math.atan2(p.ty, p.tx));
+    ctx.fillStyle = '#9aa4b2'; rr(-1, -hw - 3, 7, blade + 14, 2); ctx.fill();
+    ctx.fillStyle = '#5f6a79'; rr(-10, -hw*0.62, 11, blade*0.62*2, 2); ctx.fill();
+    ctx.fillStyle = '#d4d9e0'; ctx.beginPath(); ctx.arc(-5, -hw*0.3, 1.7, 0, 6.283); ctx.arc(-5, hw*0.3, 1.7, 0, 6.283); ctx.fill();
+    ctx.restore();
+  }
+  function strokeMid(off){
+    ctx.beginPath();
+    for (var i = 0; i < S.length; i++){ var p = S[i]; ctx.lineTo(p.x - p.ty*(off+p.f*0.5), p.y + p.tx*(off+p.f*0.5)); }
+    ctx.stroke();
+  }
+
+  function frame(now){
+    if (!running) return;
+    var dt = Math.min(0.033, ((now - last) / 1000) || 0.016); last = now; t += dt;
+    step(dt); draw();
+    requestAnimationFrame(frame);
+  }
+  function step(dt){
+    size();
+    var r = cv.getBoundingClientRect(), target, k;
+    var px = ptr.cx - r.left, py = ptr.cy - r.top;
+    if (ptr.active){
+      target = { x: Math.max(mouth.x + 70, Math.min(W - 12, px)), y: Math.max(blade, Math.min(H - blade*0.8, py)) };
+      k = ptr.held ? TUNE.STIFF_HELD : TUNE.STIFF_AUTO * 1.6;
+    } else { target = autoTarget(); k = TUNE.STIFF_AUTO; }
+    tip.vx += ((target.x - tip.x) * k - tip.vx * TUNE.DAMP) * dt;
+    tip.vy += ((target.y - tip.y) * k - tip.vy * TUNE.DAMP) * dt;
+    tip.x += tip.vx * dt; tip.y += tip.vy * dt;
+    for (var i = 0; i < dust.length; i++){
+      var d = dust[i];
+      d.y -= d.sp * dt * 9; d.x += Math.sin(t*0.6 + d.ph) * dt * 6;
+      if (d.y < -4){ d.y = H + 4; d.x = Math.random()*W; }
+      if (ptr.active){
+        var dx = d.x + d.ox - px, dy = d.y + d.oy - py, dd = dx*dx + dy*dy, R = 70;
+        if (dd < R*R){ var f = (1 - Math.sqrt(dd)/R) * 900 * dt, m = Math.sqrt(dd) || 1; d.vx += dx/m*f; d.vy += dy/m*f; }
+      }
+      d.vx += (-d.ox*38 - d.vx*6.5) * dt; d.vy += (-d.oy*38 - d.vy*6.5) * dt;
+      d.ox += d.vx*dt; d.oy += d.vy*dt;
+    }
+  }
+  function draw(){
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < dust.length; i++){
+      var d = dust[i];
+      ctx.fillStyle = 'rgba(190,212,245,' + (d.a * (0.7 + 0.3*Math.sin(t*1.3 + d.ph))).toFixed(3) + ')';
+      ctx.beginPath(); ctx.arc(d.x + d.ox, d.y + d.oy, d.r, 0, 6.283); ctx.fill();
+    }
+    var len = sampleBlade();
+    drawBlade(len);
+    drawCase();
+  }
+
+  // input: finger drags the hook anywhere in the band; a mouse steers it while hovering the hero
+  var hero = cv.closest('.hero');
+  cv.addEventListener('pointerdown', function(e){
+    ptr.active = true; ptr.held = true; ptr.id = e.pointerId; ptr.cx = e.clientX; ptr.cy = e.clientY;
+    try { cv.setPointerCapture(e.pointerId); } catch(_){}
+    e.preventDefault(); start();
+  });
+  cv.addEventListener('pointermove', function(e){ if (ptr.held && e.pointerId === ptr.id){ ptr.cx = e.clientX; ptr.cy = e.clientY; } });
+  function release(e){ if (ptr.held && (!e || e.pointerId === ptr.id)){ ptr.held = false; ptr.active = false; } }
+  cv.addEventListener('pointerup', release); cv.addEventListener('pointercancel', release);
+  cv.addEventListener('touchmove', function(e){ if (ptr.held) e.preventDefault(); }, {passive:false});
+  hero.addEventListener('pointermove', function(e){
+    if (e.pointerType !== 'mouse' || ptr.held) return;
+    ptr.cx = e.clientX; ptr.cy = e.clientY; ptr.active = true;
+  });
+  hero.addEventListener('pointerleave', function(e){ if (e.pointerType === 'mouse' && !ptr.held) ptr.active = false; });
+
+  function start(){ if (running || REDUCED || !visible) return; running = true; last = performance.now(); requestAnimationFrame(frame); }
+  size();
+  if (REDUCED){ tip.x = mouth.x + W*0.6; tip.y = mouth.y; draw();
+    window.addEventListener('resize', function(){ if (size()) { tip.x = mouth.x + W*0.6; tip.y = mouth.y; draw(); } }); return; }
+  draw();
+  new IntersectionObserver(function(es){ visible = es[0].isIntersecting; if (visible) start(); else running = false; }).observe(cv);
+  start();
+})();
+
+/* ---------- chalk-line dividers you can pluck ---------- */
+(function(){
+  var TUNE = { NODES: 64, TENSION: 0.32, SUBSTEPS: 3, DAMP: 0.988, PLUCK: 0.55, AMBIENT_MIN: 3.5, AMBIENT_MAX: 7, MAX: 26 };
+  var NS = 'http://www.w3.org/2000/svg', VB = 1000, VH = 80, MID = 40;
+  var lines = [];
+  document.querySelectorAll('svg.chalk').forEach(function(svg){
+    svg.setAttribute('viewBox', '0 0 ' + VB + ' ' + VH);
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.style.background = svg.dataset.top;
+    var fill = document.createElementNS(NS, 'path'); fill.setAttribute('fill', svg.dataset.bottom);
+    var haze = document.createElementNS(NS, 'path'); haze.setAttribute('fill', 'none');
+    haze.setAttribute('stroke', 'rgba(79,143,230,.28)'); haze.setAttribute('stroke-width', '7'); haze.setAttribute('vector-effect', 'non-scaling-stroke');
+    var line = document.createElementNS(NS, 'path'); line.setAttribute('fill', 'none');
+    line.setAttribute('stroke', '#4f8fe6'); line.setAttribute('stroke-width', '2.4'); line.setAttribute('vector-effect', 'non-scaling-stroke');
+    svg.appendChild(fill); svg.appendChild(haze); svg.appendChild(line);
+    var y = new Float32Array(TUNE.NODES), v = new Float32Array(TUNE.NODES);
+    lines.push({svg:svg, fill:fill, haze:haze, line:line, y:y, v:v, vis:false, next: 1 + Math.random()*3, prevRel:null});
+  });
+  if (!lines.length) return;
+
+  function pluck(L, xFrac, amp){
+    var n = TUNE.NODES, c = xFrac * (n-1), w = n * 0.09;
+    for (var i = 1; i < n-1; i++){ var g = Math.exp(-((i-c)*(i-c))/(2*w*w)); L.v[i] += amp * g; }
+  }
+  function path(L){
+    var n = TUNE.NODES, d = 'M0 ' + MID, dx = VB/(n-1);
+    for (var i = 1; i < n; i++){
+      var x0 = (i-1)*dx, y0 = MID + L.y[i-1], x1 = i*dx, y1 = MID + L.y[i];
+      d += ' Q' + x0.toFixed(1) + ' ' + y0.toFixed(2) + ' ' + ((x0+x1)/2).toFixed(1) + ' ' + ((y0+y1)/2).toFixed(2);
+    }
+    d += ' L' + VB + ' ' + MID;
+    return d;
+  }
+  function render(L){ var d = path(L); L.line.setAttribute('d', d); L.haze.setAttribute('d', d); L.fill.setAttribute('d', d + ' L' + VB + ' ' + VH + ' L0 ' + VH + ' Z'); }
+  lines.forEach(render);
+  if (REDUCED) return;
+
+  var ptr = {x:-1, y:-1, has:false};
+  window.addEventListener('pointermove', function(e){ ptr.x = e.clientX; ptr.y = e.clientY; ptr.has = true; }, {passive:true});
+  window.addEventListener('touchmove', function(e){ var t = e.touches[0]; if (t){ ptr.x = t.clientX; ptr.y = t.clientY; ptr.has = true; } }, {passive:true});
+  window.addEventListener('touchstart', function(e){ var t = e.touches[0]; if (t){ ptr.x = t.clientX; ptr.y = t.clientY; ptr.has = true; lines.forEach(function(L){ L.prevRel = null; }); } }, {passive:true});
+
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ lines.forEach(function(L){ if (L.svg === e.target) L.vis = e.isIntersecting; }); }); kick(); });
+  lines.forEach(function(L){ io.observe(L.svg); });
+
+  var running = false, last = 0;
+  function kick(){ if (!running && lines.some(function(L){ return L.vis; })){ running = true; last = performance.now(); requestAnimationFrame(tick); } }
+  function tick(now){
+    var dt = Math.min(0.05, (now - last)/1000 || 0.016); last = now;
+    var any = false;
+    for (var k = 0; k < lines.length; k++){
+      var L = lines[k]; if (!L.vis){ L.prevRel = null; continue; } any = true;
+      // finger or mouse crossing the line plucks it (scrolling past with a finger down counts)
+      if (ptr.has){
+        var r = L.svg.getBoundingClientRect(), ly = r.top + r.height/2, rel = ptr.y - ly;
+        if (L.prevRel !== null && (L.prevRel < 0) !== (rel < 0) && ptr.x >= r.left && ptr.x <= r.right){
+          var sp = Math.min(1, Math.abs(rel - L.prevRel) / 30);
+          pluck(L, (ptr.x - r.left)/r.width, (rel > 0 ? 1 : -1) * TUNE.PLUCK * (8 + 22*sp));
+        }
+        L.prevRel = rel;
+      }
+      L.next -= dt;
+      if (L.next <= 0){ pluck(L, 0.2 + Math.random()*0.6, (Math.random() < 0.5 ? -1 : 1) * (5 + Math.random()*6)); L.next = TUNE.AMBIENT_MIN + Math.random()*(TUNE.AMBIENT_MAX - TUNE.AMBIENT_MIN); }
+      var n = TUNE.NODES, y = L.y, v = L.v;
+      for (var s = 0; s < TUNE.SUBSTEPS; s++){
+        for (var i = 1; i < n-1; i++) v[i] += TUNE.TENSION * (y[i-1] - 2*y[i] + y[i+1]);
+        for (i = 1; i < n-1; i++){ v[i] *= TUNE.DAMP; y[i] += v[i] * 0.33; if (y[i] > TUNE.MAX) { y[i] = TUNE.MAX; v[i] *= -0.3; } else if (y[i] < -TUNE.MAX) { y[i] = -TUNE.MAX; v[i] *= -0.3; } }
+      }
+      render(L);
+    }
+    if (any) requestAnimationFrame(tick); else running = false;
+  }
+  kick();
+})();
+
+/* ---------- quote form -> pre-written text ---------- */
+(function(){
+  var f = document.getElementById('qform'); if (!f) return;
+  var job = document.getElementById('q-job'), fj = document.getElementById('f-job');
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var work = [].slice.call(f.querySelectorAll('input[name=work]:checked')).map(function(i){ return i.value; });
+    var name = document.getElementById('q-name').value.trim();
+    var town = document.getElementById('q-town').value.trim();
+    var when = document.getElementById('q-when').value;
+    var about = job.value.trim();
+    if (!work.length && !about){ fj.classList.add('bad'); job.setAttribute('aria-invalid', 'true'); job.setAttribute('aria-describedby', 'e-job'); job.focus(); return; }
+    var lines = ['Hi Silva Carpentry!' + (name ? ' This is ' + name + '.' : '') + ' I\'d like a quote.'];
+    if (work.length) lines.push('Work: ' + work.join(', '));
+    if (about) lines.push('About the job: ' + about);
+    if (town) lines.push('Town: ' + town);
+    if (when) lines.push('When: ' + when);
+    window.location.href = smsHref(lines.join('\n'));
+  });
+  function clear(){ fj.classList.remove('bad'); job.removeAttribute('aria-invalid'); }
+  job.addEventListener('input', clear);
+  f.querySelectorAll('input[name=work]').forEach(function(i){ i.addEventListener('change', clear); });
+})();
+</script>
+</body>
+</html>
