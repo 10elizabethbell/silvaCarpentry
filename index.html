@@ -182,7 +182,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--focus);b
 @media (min-width:1024px){
   .quote-grid{display:grid;grid-template-columns:5fr 7fr;gap:60px;align-items:start}
   form{margin-top:6px}
-  .chips{grid-template-columns:repeat(4,1fr)}
+  .chips{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 }
 @media (hover:hover){
   .btn-fill:hover{background:var(--tape-hover)}
